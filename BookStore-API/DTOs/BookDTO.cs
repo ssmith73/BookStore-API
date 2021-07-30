@@ -5,6 +5,11 @@ using System.Threading.Tasks;
 
 namespace BookStore_API.DTOs
 {
+    /// <summary>
+    /// DTO = Data Transfer Object
+    /// DTO's carry data between processes, they encapsulate data and
+    /// send it from one subsystem fo an application to another
+    /// </summary>
     public class BookDTO
     {
         public int Id { get; set; }

@@ -30,7 +30,11 @@ namespace BookStore_API
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to add services to the container. 
+        /// IT binds services to contracts (interfaces)
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -66,6 +70,10 @@ namespace BookStore_API
             
             });
 
+            services.AddScoped<IAuthorRepository, AuthorRepository>();
+
+            //As this is in the startup class, it can be injected  as a dependencies as required
+            //for any class that needs it in this project
             services.AddSingleton<ILoggerService, LoggerService>();
 
 

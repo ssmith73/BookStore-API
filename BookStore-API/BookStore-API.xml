@@ -4,6 +4,57 @@
         <name>BookStore-API</name>
     </assembly>
     <members>
+        <member name="T:BookStore_API.Controllers.AuthorsController">
+            <summary>
+            Endpoint used to interact with the Authors in the book store's database
+            Controllers talk to the DTO objects
+            </summary>
+        </member>
+        <member name="M:BookStore_API.Controllers.AuthorsController.GetAuthors">
+            <summary>
+            Get All Authors
+            need an endpoint for getting all books
+            ActionResult comes from MVC
+            </summary>
+            <returns>List of Authors</returns>
+        </member>
+        <member name="M:BookStore_API.Controllers.AuthorsController.GetAuthor(System.Int32)">
+            <summary>
+            Get an author by ID
+            </summary>
+            <param name="id"></param>
+            <returns>An Author's record</returns>
+        </member>
+        <member name="M:BookStore_API.Controllers.AuthorsController.Create(BookStore_API.DTOs.AuthorCreateDTO)">
+            <summary>
+            Creates an Author
+            </summary>
+            <param name="author"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BookStore_API.Controllers.AuthorsController.Update(System.Int32,BookStore_API.DTOs.AuthorUpdateDTO)">
+            <summary>
+            Updates an author
+            </summary>
+            <param name="id"></param>
+            <param name="author"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BookStore_API.Controllers.AuthorsController.Delete(System.Int32)">
+            <summary>
+            Updates an author
+            </summary>
+            <param name="id"></param>
+            <param name="author"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BookStore_API.Controllers.AuthorsController.InternalError(System.String)">
+            <summary>
+            Present consistant error status message
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
         <member name="T:BookStore_API.Controllers.HomeController">
             <summary>
             This is a test API controller
@@ -22,11 +73,23 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="T:BookStore_API.Data.ApplicationDbContext">
+            <summary>
+            Definitions for how to connect to the database
+            </summary>
+        </member>
         <member name="T:BookStore_API.DTOs.AuthorDTO">
             <summary>
             Use this DTO class to enforce certain validations
             Users interact with this class - not the Author class
             Set any limits on user interaction with database objects here
+            </summary>
+        </member>
+        <member name="T:BookStore_API.DTOs.BookDTO">
+            <summary>
+            DTO = Data Transfer Object
+            DTO's carry data between processes, they encapsulate data and
+            send it from one subsystem fo an application to another
             </summary>
         </member>
         <member name="T:BookStore_API.Mappings.Maps">
@@ -37,6 +100,18 @@
             In the field of programming a data transfer object (DTO ) 
             is an object that carries data between processes. 
             </summary>
+        </member>
+        <member name="T:BookStore_API.Services.AuthorRepository">
+            <summary>
+            Setup baseline CRUD operations for Author table
+            </summary>
+        </member>
+        <member name="M:BookStore_API.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container. 
+            IT binds services to contracts (interfaces)
+            </summary>
+            <param name="services"></param>
         </member>
     </members>
 </doc>

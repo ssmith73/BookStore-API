@@ -6,6 +6,9 @@ using System.Text;
 
 namespace BookStore_API.Data
 {
+    /// <summary>
+    /// Definitions for how to connect to the database
+    /// </summary>
     public class ApplicationDbContext : IdentityDbContext
     {
         public DbSet<Author> Authors { get; set; }
