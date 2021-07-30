@@ -22,5 +22,21 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="T:BookStore_API.DTOs.AuthorDTO">
+            <summary>
+            Use this DTO class to enforce certain validations
+            Users interact with this class - not the Author class
+            Set any limits on user interaction with database objects here
+            </summary>
+        </member>
+        <member name="T:BookStore_API.Mappings.Maps">
+            <summary>
+            Let automapper understand the mappings b/n classes and DTO
+            DTO is object from user, Only matching properties are matched
+            so if user makes spelling error in name it's ignored
+            In the field of programming a data transfer object (DTO ) 
+            is an object that carries data between processes. 
+            </summary>
+        </member>
     </members>
 </doc>
