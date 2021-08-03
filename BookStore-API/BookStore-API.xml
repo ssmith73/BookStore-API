@@ -48,7 +48,69 @@
             <param name="author"></param>
             <returns></returns>
         </member>
+        <member name="M:BookStore_API.Controllers.AuthorsController.GetControllerActionNames">
+            <summary>
+            What controller and action is making a given call
+            Just to improve the log
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:BookStore_API.Controllers.AuthorsController.InternalError(System.String)">
+            <summary>
+            Present consistant error status message
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BookStore_API.Controllers.BooksController">
+            <summary>
+            Interacts with the Books table
+            </summary>
+        </member>
+        <member name="M:BookStore_API.Controllers.BooksController.GetBooks">
+            <summary>
+            Get all Books
+            </summary>
+            <returns>A List of books</returns>
+        </member>
+        <member name="M:BookStore_API.Controllers.BooksController.GetBook(System.Int32)">
+            <summary>
+            Gets a Book by Id
+            </summary>
+            <param name="id"></param>
+            <returns>A Book Record</returns>
+        </member>
+        <member name="M:BookStore_API.Controllers.BooksController.Create(BookStore_API.DTOs.BookCreateDTO)">
+            <summary>
+            Creates a new Book
+            </summary>
+            <param name="BookDTO"></param>
+            <returns>Book object</returns>
+        </member>
+        <member name="M:BookStore_API.Controllers.BooksController.Update(System.Int32,BookStore_API.DTOs.BookUpdateDTO)">
+            <summary>
+            Update a record in the Book database
+            </summary>
+            <param name="Id"></param>
+            <param name="BookDTO"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BookStore_API.Controllers.BooksController.Delete(System.Int32)">
+            <summary>
+            Delete record with given Id
+            </summary>
+            <param name="Id"></param>
+            <param name="BookDTO"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BookStore_API.Controllers.BooksController.GetControllerActionNames">
+            <summary>
+            What controller and action is making a given call
+            Just to improve the log
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BookStore_API.Controllers.BooksController.InternalError(System.String)">
             <summary>
             Present consistant error status message
             </summary>
@@ -90,6 +152,16 @@
             DTO = Data Transfer Object
             DTO's carry data between processes, they encapsulate data and
             send it from one subsystem fo an application to another
+            </summary>
+        </member>
+        <member name="T:BookStore_API.DTOs.BookCreateDTO">
+            <summary>
+            client save mapping
+            </summary>
+        </member>
+        <member name="T:BookStore_API.DTOs.BookUpdateDTO">
+            <summary>
+            Define what the client can update in a record
             </summary>
         </member>
         <member name="T:BookStore_API.Mappings.Maps">

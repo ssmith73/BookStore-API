@@ -71,6 +71,7 @@ namespace BookStore_API
             });
 
             services.AddScoped<IAuthorRepository, AuthorRepository>();
+            services.AddScoped<IBookRepository, BookRepository>();
 
             //As this is in the startup class, it can be injected  as a dependencies as required
             //for any class that needs it in this project
