@@ -42,7 +42,7 @@
         </member>
         <member name="M:BookStore_API.Controllers.AuthorsController.Delete(System.Int32)">
             <summary>
-            Updates an author
+            Deletes an author
             </summary>
             <param name="id"></param>
             <param name="author"></param>
@@ -135,6 +135,34 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:BookStore_API.Controllers.UsersController.Login(BookStore_API.Data.UserDTO)">
+            <summary>
+            User Login endppoint
+            </summary>
+            <param name="userDTO"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BookStore_API.Controllers.UsersController.GenerateJSONWebToken(Microsoft.AspNetCore.Identity.IdentityUser)">
+            <summary>
+            
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BookStore_API.Controllers.UsersController.GetControllerActionNames">
+            <summary>
+            What controller and action is making a given call
+            Just to improve the log
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BookStore_API.Controllers.UsersController.InternalError(System.String)">
+            <summary>
+            Present consistant error status message
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
         <member name="T:BookStore_API.Data.ApplicationDbContext">
             <summary>
             Definitions for how to connect to the database
@@ -177,13 +205,6 @@
             <summary>
             Setup baseline CRUD operations for Author table
             </summary>
-        </member>
-        <member name="M:BookStore_API.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-            <summary>
-            This method gets called by the runtime. Use this method to add services to the container. 
-            IT binds services to contracts (interfaces)
-            </summary>
-            <param name="services"></param>
         </member>
     </members>
 </doc>
