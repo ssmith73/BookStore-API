@@ -2,6 +2,7 @@
 using BookStore_API.Contracts;
 using BookStore_API.Data;
 using BookStore_API.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -16,6 +17,7 @@ namespace BookStore_API.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize] //Global authorize if one is neglected below
     public class BooksController : ControllerBase
     {
         //inject dependencies
@@ -97,6 +99,7 @@ namespace BookStore_API.Controllers
         /// </summary>
         /// <param name="BookDTO"></param>
         /// <returns>Book object</returns>
+        [Authorize(Roles = "Administrator")] //only an admin can hit this endpoint
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -146,6 +149,7 @@ namespace BookStore_API.Controllers
         /// <param name="Id"></param>
         /// <param name="BookDTO"></param>
         /// <returns></returns>
+        [Authorize(Roles = "Administrator")] //only an admin can hit this endpoint
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -195,6 +199,7 @@ namespace BookStore_API.Controllers
         /// <param name="Id"></param>
         /// <param name="BookDTO"></param>
         /// <returns></returns>
+        [Authorize(Roles = "Administrator")] //only an admin can hit this endpoint
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
