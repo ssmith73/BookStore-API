@@ -38,6 +38,48 @@ namespace BookStore_API.Controllers
         }
 
 
+        /// <summary>
+        /// Register a new user
+        /// </summary>
+        /// <param name="userDTO"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("register")] //required because there are 2 httpposts
+        public async Task <IActionResult> Register([FromBody] UserDTO userDTO)
+        {
+            //userDTO will suit both Login and Register (username and password)
+            //There are 2 HttpPost endpoints so need to route them properly
+           
+            var location = GetControllerActionNames();
+            try
+            {
+                var username = userDTO.EmailAddress;
+                var password = userDTO.Password;
+                _logger.LogInfo($"{location}: Registration attempt from user {username} ");
+                var user = new IdentityUser
+                {
+                    Email = username,
+                    UserName = username
+                };
+                var result = await _userManager.CreateAsync(user: user,
+                                                            password: password);
+                if(result.Succeeded == false)
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        _logger.LogError($"{location}: {error.Code} {error.Description}");
+                    }
+                    return InternalError($"{location}: {username} User Registration Attempt Failed");
+                }
+                await _userManager.AddToRoleAsync(user, "Customer");
+                return Created("login", new { result.Succeeded });
+
+            }
+            catch(Exception e)
+            {
+                return InternalError($"{location}: {e.Message} {e.InnerException} ");
+            }
+        }
 
 
 
@@ -48,17 +90,18 @@ namespace BookStore_API.Controllers
         /// <returns></returns>
         [AllowAnonymous]
         [HttpPost]
+        [Route("login")]
         public async Task <IActionResult> Login([FromBody] UserDTO userDTO)
         {
             var location = GetControllerActionNames();
             try
             {
-                var username = userDTO.UserName;
+                var username = userDTO.EmailAddress;
                 var password = userDTO.Password;
 
                 _logger.LogInfo($"{location}: Login attempt from user {username} ");
                 var result = await _signInManager.PasswordSignInAsync(username,password,false,false);
-                
+               
                 if(result.Succeeded == true)
                 {
                     _logger.LogInfo($"{location}: {username} Successfully Authenticated");

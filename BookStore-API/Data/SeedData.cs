@@ -17,7 +17,17 @@ namespace BookStore_API.Data
 
         private async static Task SeedUsers(UserManager<IdentityUser> userManager)
         {
-            if (await userManager.FindByEmailAsync("adming@bookstore.com") == null)
+
+#if false
+            var adminUser = userManager.Users.FirstOrDefault(x => x.UserName == "customer1@bookstore.com");
+            await userManager.AddToRoleAsync(adminUser, "Customer");
+            await userManager.RemoveFromRoleAsync(adminUser, "Administrator");
+            //adminUser.Email = "notADuplicate@ohShit.com";
+            //await userManager.RemoveLoginAsync(adminUser,adminUser.ToString(),"");
+            //var testAdminUser = await userManager.FindByEmailAsync("admin@bookstore.com");
+#endif
+
+            if (await userManager.FindByEmailAsync("admin@bookstore.com") == null)
             {
                 var user = new IdentityUser
                 {
@@ -31,12 +41,25 @@ namespace BookStore_API.Data
                 }
             }
 
-            if (await userManager.FindByEmailAsync("customer1@gmail.com") == null)
+            if (await userManager.FindByEmailAsync("customer1@bookstore.com") == null)
             {
                 var user = new IdentityUser
                 {
                     UserName = "customer1",
                     Email = "customer1@bookstore.com"
+                };
+                var result = await userManager.CreateAsync(user, "P@ssword1");
+                if(result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(user, "Customer");
+                }
+            }
+            if (await userManager.FindByEmailAsync("customer3@bookstore.com") == null)
+            {
+                var user = new IdentityUser
+                {
+                    UserName = "customer3",
+                    Email = "customer3@bookstore.com"
                 };
                 var result = await userManager.CreateAsync(user, "P@ssword1");
                 if(result.Succeeded)
